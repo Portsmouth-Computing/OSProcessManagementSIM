@@ -44,3 +44,32 @@ void TablePrinter::print()
     auto buffer = out.str();
     std::cout << buffer << "\n\n";
 }
+
+
+TablePrinter::Column::Column(const std::string& title)
+    : m_title(title)
+{
+    m_maxSize = title.length();
+}
+
+size_t TablePrinter::Column::getWidth()
+{
+    return m_maxSize + 3;
+}
+
+void TablePrinter::Column::clear()
+{
+    m_maxSize = m_title.length();
+    m_data.clear();
+}
+
+void TablePrinter::Column::addData(const std::string& newData)
+{
+    m_data.push_back(newData);
+    m_maxSize = std::max(m_maxSize, newData.length());
+}
+
+const std::string& TablePrinter::Column::getTitle()
+{
+    return m_title;
+}
