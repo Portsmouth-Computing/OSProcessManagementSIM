@@ -18,7 +18,7 @@ class QueueManager
         void printQueue();
 
         void FCFS(CPUMode mode);
-        void roundRobin(CPUMode mode);
+        void roundRobin(CPUMode mode, bool processed);
         void SJC(CPUMode mode);
         void priority(CPUMode mode);
 

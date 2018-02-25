@@ -3,9 +3,9 @@
 
 void init(QueueManager& manager)
 {
-    manager.addProcess({"Augmented Browser",       "AB",   34, State::Waiting, 72});
-    manager.addProcess({"Augmented Media Player",  "AMP",  56, State::Waiting, 452});
-    manager.addProcess({"Augmented Browser",       "AB",   23, State::Waiting, 33});
+    manager.addProcess({"Augmented Browser",        "AB",   34, State::Waiting, 72});
+    manager.addProcess({"Augmented Media Player",   "AMP",  56, State::Waiting, 452});
+    manager.addProcess({"Augmented Doc Tool",       "ADT",  23, State::Waiting, 33});
     //manager.printQueue();
 }
 
