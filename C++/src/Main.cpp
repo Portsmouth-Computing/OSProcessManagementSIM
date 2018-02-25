@@ -13,5 +13,5 @@ int main()
 {
     QueueManager manager;
     init(manager);
-    manager.implementAlgorithm(Alogorithm::RoundRobin);
+    manager.implementAlgorithm(Alogorithm::FCFS);
 }

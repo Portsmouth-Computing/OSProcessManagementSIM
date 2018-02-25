@@ -3,6 +3,11 @@
 #include <thread>
 #include <chrono>
 
+QueueManager::QueueManager()
+    : m_table({ "ID", "Name", "Priority", "State", "Jobs Left" })
+{
+}
+
 void QueueManager::addProcess(const PCB & pcb)
 {
     m_queue.push_back(pcb);
@@ -21,6 +26,11 @@ void QueueManager::implementAlgorithm(Alogorithm alg)
     }
 }
 
+void QueueManager::printQueue()
+{
+    m_table.print();
+}
+
 void QueueManager::FCFS(CPUMode mode)
 {
     for (auto& pcb : m_queue) {
@@ -28,11 +38,11 @@ void QueueManager::FCFS(CPUMode mode)
         for (int i = 0; i < pcb.getJobLength(); i++) {
             pcb.reduceJob();
             pcb.setState(State::Processing);
-            //printQueue();
+            printQueue();
             processExecuteOverhead();
             if (pcb.getJobLength() <= 0) {
                 pcb.setState(State::Terminated);
-                //printQueue();
+                printQueue();
             }
         }
     }

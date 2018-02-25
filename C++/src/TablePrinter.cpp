@@ -18,7 +18,7 @@ void TablePrinter::addRow(const std::vector<std::string>&)
 void TablePrinter::clear()
 {
     for (auto& column : m_columns)  {
-        m_columns.data.clear();
+        column.data.clear();
     }
 }
 
