@@ -11,33 +11,36 @@ TablePrinter::TablePrinter(const std::vector<std::string>& columnNames)
     }
 }
 
-void TablePrinter::addRow(const std::vector<std::string>&)
+void TablePrinter::addRow(const std::vector<std::string>& row)
 {
+    if (row.size() != m_columns.size()) {
+        return;
+    }
+
+    m_rows++;
+    for (int i = 0; i < m_columns.size(); i++)
+    {
+        m_columns.at(i).addData(row.at(i));
+    }
 }
 
 void TablePrinter::clear()
 {
+    m_rows = 0;
     for (auto& column : m_columns)  {
-        column.data.clear();
+        column.clear();
     }
 }
 
 void TablePrinter::print()
 {
-    std::vector<size_t> widths;
-    for (auto& column : m_columns) {
-        widths.push_back(column.getMaxDataWidth());
-    }
-
     std::ostringstream out;
-    for (size_t i = 0; i < m_columns.size(); i++) {
-        out << std::setw(widths.at(i)) << m_columns.at(i).title;
+    for (auto& column : m_columns) {
+        out << std::setw(column.getWidth()) << column.getTitle();
     }
     out << "\n";
 
-    for (size_t i = 0; i < m_columns.size(); i++) {
 
-    }
     auto buffer = out.str();
     std::cout << buffer << "\n\n";
 }
