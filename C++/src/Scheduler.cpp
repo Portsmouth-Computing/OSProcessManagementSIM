@@ -41,17 +41,21 @@ void QueueManager::printQueue()
     m_table.clear();
 }
 
+void QueueManager::processPCB(PCB & block)
+{
+    block.reduceJob();
+    block.setState(State::Processing);
+    printQueue();
+    processExecuteOverhead();
+}
+
 void QueueManager::FCFS(CPUMode mode)
 {
     for (auto& pcb : m_queue) {
         processSwitchOverhead();
-        m_processSwitches++;
         int jobs = pcb.getJobLength();
         for (int i = 0; i < jobs; i++) {
-            pcb.reduceJob();
-            pcb.setState(State::Processing);
-            printQueue();
-            processExecuteOverhead();
+            processPCB(pcb);
             if (pcb.getJobLength() <= 0) {
                 pcb.setState(State::Terminated);
                 printQueue();
@@ -65,7 +69,27 @@ void QueueManager::roundRobin(CPUMode mode, bool processed)
     if (processed) {
         return;
     }
+    bool proccessedFlag = true;
+    auto reversedShedule = m_queue;
+    //std::reverse(reversedShedule.cbegin(), reversedShedule.cend());
 
+    for (auto& pcb : m_queue) {
+        processSwitchOverhead();
+        if (pcb.getState() != State::Terminated && pcb.getJobLength() > 0) {
+            for (int i = 0; i < 23; i++) {
+                proccessedFlag = false;
+                processPCB(pcb);
+                if (pcb.getJobLength() <= 0) {
+                    pcb.setState(State::Terminated);
+                    break;
+                }
+            }
+        }
+        if (pcb.getState() != State::Terminated) {
+            pcb.setState(State::Waiting);
+        }
+    }
+    roundRobin(mode, proccessedFlag);
 }
 
 void QueueManager::SJC(CPUMode mode)
@@ -79,6 +103,7 @@ void QueueManager::priority(CPUMode mode)
 void QueueManager::processSwitchOverhead()
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    m_processSwitches++;
 }
 
 void QueueManager::processExecuteOverhead()

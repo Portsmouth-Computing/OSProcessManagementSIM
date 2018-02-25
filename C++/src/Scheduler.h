@@ -13,14 +13,15 @@ class QueueManager
 
         void addProcess(const PCB& pcb);
         void implementAlgorithm(Alogorithm alg);
-
-    private:
         void printQueue();
 
-        void FCFS(CPUMode mode);
-        void roundRobin(CPUMode mode, bool processed);
-        void SJC(CPUMode mode);
-        void priority(CPUMode mode);
+    private:
+        void processPCB(PCB& block);
+
+        void FCFS       (CPUMode mode);
+        void roundRobin (CPUMode mode, bool processed);
+        void SJC        (CPUMode mode);
+        void priority   (CPUMode mode);
 
 
         void processSwitchOverhead();
