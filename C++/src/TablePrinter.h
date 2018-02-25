@@ -14,10 +14,10 @@ class TablePrinter
         size_t getMaxDataWidth()
         {
             size_t max = 0;
-            for (auto& data : str) {
-                max = std::max(str.size(), max);
+            for (auto& str : data) {
+                max = std::max(str.length(), max);
             }
-            return std::max(max, title.size());
+            return std::max(max, title.size()) + 4;
         }
 
         const std::string title;
@@ -33,5 +33,4 @@ class TablePrinter
 
     private:
         std::vector<Column> m_columns;
-        std::string m_outputBuffer;
 };
