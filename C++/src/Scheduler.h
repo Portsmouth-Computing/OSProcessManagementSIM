@@ -19,6 +19,8 @@ class QueueManager
 
         void FCFS(CPUMode mode);
         void roundRobin(CPUMode mode);
+        void SJC(CPUMode mode);
+        void priority(CPUMode mode);
 
 
         void processSwitchOverhead();

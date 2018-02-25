@@ -18,7 +18,9 @@ enum class State
 enum class Alogorithm
 {
     FCFS,
-    RoundRobin
+    RoundRobin,
+    SJC,
+    Priority
 };
 
 std::string stateToString(State state);

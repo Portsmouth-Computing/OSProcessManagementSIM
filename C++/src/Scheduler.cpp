@@ -23,6 +23,12 @@ void QueueManager::implementAlgorithm(Alogorithm alg)
         case Alogorithm::RoundRobin:
             roundRobin(CPUMode::FixedCycle);
             break;
+
+        case Alogorithm::Priority:
+            break;
+
+        case Alogorithm::SJC:
+            break;
     }
 }
 
@@ -55,6 +61,14 @@ void QueueManager::FCFS(CPUMode mode)
 }
 
 void QueueManager::roundRobin(CPUMode mode)
+{
+}
+
+void QueueManager::SJC(CPUMode mode)
+{
+}
+
+void QueueManager::priority(CPUMode mode)
 {
 }
 
