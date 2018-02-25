@@ -1,7 +1,7 @@
 #pragma once
 
 #include "PCB.h"
-#include "Globals.h"
+#include "Enums.h"
 #include "TablePrinter.h"
 
 #include <vector>

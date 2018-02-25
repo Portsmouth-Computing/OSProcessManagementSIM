@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 enum class CPUMode
 {
     Interrupt = 0,
@@ -18,3 +20,5 @@ enum class Alogorithm
     FCFS,
     RoundRobin
 };
+
+std::string stateToString(State state);

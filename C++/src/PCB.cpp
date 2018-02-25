@@ -23,7 +23,7 @@ void PCB::addToTable(TablePrinter& table)
         m_id,
         m_name,
         std::to_string(m_priority),
-        std::to_string((int)m_state),
+        stateToString(m_state),
         std::to_string(m_jobLength)
     });
 }

@@ -39,7 +39,9 @@ void QueueManager::FCFS(CPUMode mode)
 {
     for (auto& pcb : m_queue) {
         processSwitchOverhead();
-        for (int i = 0; i < pcb.getJobLength(); i++) {
+        m_processSwitches++;
+        int jobs = pcb.getJobLength();
+        for (int i = 0; i < jobs; i++) {
             pcb.reduceJob();
             pcb.setState(State::Processing);
             printQueue();
@@ -63,5 +65,5 @@ void QueueManager::processSwitchOverhead()
 
 void QueueManager::processExecuteOverhead()
 {
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }

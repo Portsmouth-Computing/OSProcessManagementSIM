@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Globals.h"
+#include "Enums.h"
 
 class TablePrinter;
 
