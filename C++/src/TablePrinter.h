@@ -13,6 +13,7 @@ class TablePrinter
              void clear();
              void addData(const std::string& newData);
              const std::string& getTitle();
+             const std::string& getDataAt(size_t i);
 
         private:
              const std::string m_title;

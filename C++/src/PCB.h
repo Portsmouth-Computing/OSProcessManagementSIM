@@ -4,6 +4,8 @@
 
 #include "Globals.h"
 
+class TablePrinter;
+
 class PCB
 {
     public:
@@ -19,6 +21,7 @@ class PCB
         int getJobLength    () { return m_jobLength; }
         State getState      () { return m_state; }
 
+        void addToTable(TablePrinter& table);
 
     private:
         std::string m_name;

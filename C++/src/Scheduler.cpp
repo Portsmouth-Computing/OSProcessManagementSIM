@@ -28,7 +28,11 @@ void QueueManager::implementAlgorithm(Alogorithm alg)
 
 void QueueManager::printQueue()
 {
+    for (auto& pcb : m_queue) {
+        pcb.addToTable(m_table);
+    }
     m_table.print();
+    m_table.clear();
 }
 
 void QueueManager::FCFS(CPUMode mode)

@@ -40,6 +40,12 @@ void TablePrinter::print()
     }
     out << "\n";
 
+    for (unsigned i = 0; i < m_rows; i++) {
+        for (auto& column : m_columns) {
+            out << std::setw(column.getWidth()) << column.getDataAt(i);
+        }
+        out << "\n";
+    }
 
     auto buffer = out.str();
     std::cout << buffer << "\n\n";
@@ -72,4 +78,9 @@ void TablePrinter::Column::addData(const std::string& newData)
 const std::string& TablePrinter::Column::getTitle()
 {
     return m_title;
+}
+
+const std::string& TablePrinter::Column::getDataAt(size_t i)
+{
+    return m_data.at(i);
 }
